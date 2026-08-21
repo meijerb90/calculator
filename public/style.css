@@ -1,0 +1,154 @@
+:root {
+  --bg: #1c1d22;
+  --calc-bg: #26272e;
+  --display-fg: #f5f6fa;
+  --expression-fg: #8b8d98;
+  --key-bg: #34363e;
+  --key-fg: #f5f6fa;
+  --key-hover: #3f414b;
+  --fn-bg: #4a4c56;
+  --op-bg: #ff9f43;
+  --op-fg: #1c1d22;
+  --op-hover: #ffb066;
+  --save-bg: #5b8def;
+  --save-hover: #74a0f5;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+}
+
+.calculator {
+  width: 320px;
+  padding: 20px;
+  background: var(--calc-bg);
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  position: relative;
+}
+
+.display {
+  padding: 28px 12px 16px;
+  text-align: right;
+  overflow: hidden;
+}
+
+.expression {
+  min-height: 20px;
+  font-size: 16px;
+  color: var(--expression-fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.current {
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--display-fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.key {
+  border: none;
+  border-radius: var(--radius);
+  background: var(--key-bg);
+  color: var(--key-fg);
+  font-size: 20px;
+  font-weight: 500;
+  padding: 18px 0;
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.05s ease;
+}
+
+.key:hover {
+  background: var(--key-hover);
+}
+
+.key:active {
+  transform: scale(0.96);
+}
+
+.key--fn {
+  background: var(--fn-bg);
+}
+
+.key--op {
+  background: var(--op-bg);
+  color: var(--op-fg);
+  font-weight: 600;
+}
+
+.key--op:hover {
+  background: var(--op-hover);
+}
+
+.key--wide {
+  grid-column: span 2;
+  text-align: left;
+  padding-left: 26px;
+}
+
+.key--equals {
+  text-align: center;
+  padding-left: 0;
+}
+
+.key--save {
+  grid-column: span 4;
+  background: var(--save-bg);
+  color: #fff;
+  text-align: center;
+  padding-left: 0;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+.key--save:hover {
+  background: var(--save-hover);
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: -46px;
+  transform: translateX(-50%);
+  background: #2ecc71;
+  color: #fff;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, bottom 0.2s ease;
+  white-space: nowrap;
+}
+
+.toast.toast--error {
+  background: #e74c3c;
+}
+
+.toast.show {
+  opacity: 1;
+  bottom: -56px;
+}

@@ -2,7 +2,8 @@
   "name": "Calculator",
   "short_name": "Calculator",
   "start_url": "/",
-  "display": "standalone",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
   "background_color": "#1c1d22",
   "theme_color": "#26272e",
   "icons": [

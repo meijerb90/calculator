@@ -1,4 +1,4 @@
-const CACHE_NAME = 'calculator-v1';
+const CACHE_NAME = 'calculator-v2';
 const APP_SHELL = ['/', '/style.css', '/script.js', '/manifest.json'];
 
 self.addEventListener('install', (event) => {
@@ -25,13 +25,12 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith(
-    caches.match(request).then((cached) => {
-      if (cached) return cached;
-      return fetch(request).then((response) => {
+    fetch(request)
+      .then((response) => {
         const clone = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
         return response;
-      });
-    })
+      })
+      .catch(() => caches.match(request))
   );
 });
